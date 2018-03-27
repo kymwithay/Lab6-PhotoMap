@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="1156" y="-4"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--nav-->
         <scene sceneID="Hmi-Y4-1Mr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jTD-rF-wIY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav" title="nav" automaticallyAdjustsScrollViewInsets="NO" id="jTD-rF-wIY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t5z-BI-kju">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
