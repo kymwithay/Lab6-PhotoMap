@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, LocationsViewControllerDelegate {
     
     var myView: LocationsViewController = LocationsViewController()
@@ -52,10 +53,8 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         let destinationViewController = segue.destination as! LocationsViewController
         destinationViewController.delegate = self
     }
-    
-    
+
     func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
-        
         let newRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude)), MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(newRegion, animated: true)
         
@@ -71,21 +70,22 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("here")
         let reuseID = "myAnnotationView"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
         if (annotationView == nil) {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView!.canShowCallout = true
             annotationView!.leftCalloutAccessoryView = UIImageView(frame: CGRect(x:0, y:0, width: 50, height:50))
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView!.rightCalloutAccessoryView = btn
         }
         
         let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
-        imageView.image = #imageLiteral(resourceName: "camera")
+        imageView.image = newImage
         
         return annotationView
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
